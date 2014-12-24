@@ -1,4 +1,4 @@
 lark-demo
 =========
 
-Demp application built with lark
+Demp application builind with lark

@@ -1,4 +1,7 @@
-var router = require('lark-router').Router();
-var models = require('lark-mvc')
-router.get('/article/:id', models.demo.pageServer.article);
-module.exports = router;
+module.exports = function(router){
+    router.get('/article/:id', function *(next){
+        this.body = this.pageService.demo.render()
+        yield next;
+    });
+    return router
+};

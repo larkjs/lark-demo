@@ -7,18 +7,25 @@ var demoPage = function(mvc){
         // for example, in page layer, requesting this.pageServer.otherLayer
         // and this.dataServer.demo is ok, but requesting this.action
         // is invalid.
-        var res = ''
         co(function *(){
-        var categroy = yield this.dataService.demo.getArticles(this.params.id)
-        var articles = yield this.dataService.demo.getArticles(categroy)
-        var data = {
-            'categroy': categroy,
-            'articles': articles
-        }
-        res = yield this.render('demo.html', data)
+            var categroy = yield this.dataService.demo.getCategroy(this.params.id)
+            var articles = yield this.dataService.demo.getArticles(categroy)
+            var data = {
+                'title': 'demo',
+                'categroy': categroy,
+                'articles': articles
+            }
+            return data
+        }).then(function(data){
+            console.log(data)
+            console.log(this.render('demo.html', data))
+            return this.render('demo.html', data)
         })
-        return res
     }
+
+    demo.renderArticle = function(articleId){
+        return "\n you are in article/" + articleId
+     }
 }
 
 module.exports = demoPage

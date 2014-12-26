@@ -3,6 +3,7 @@ if [ -f "node" ]; then
     cd ..
 fi
 if [ -f "bin/node" ]; then
+    export PATH="$PWD/bin:$PATH"
     ./bin/node --harmony index.js 
 else
     node --harmony index.js

@@ -1,2 +1,10 @@
 #!/bin/bash
-./node_modules/lark/node_modules/lark-bootstrap/node_modules/pm2/bin/pm2 kill
+if [ -f "node" ]; then
+    cd ..
+fi
+if [ -f "bin/node" ]; then
+    export PATH="$PWD/bin:$PATH"
+    ./node_modules/lark/node_modules/lark-bootstrap/node_modules/pm2/bin/pm2 kill
+else
+    ./node_modules/lark/node_modules/lark-bootstrap/node_modules/pm2/bin/pm2 kill
+fi

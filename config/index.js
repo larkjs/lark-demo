@@ -1,5 +1,5 @@
 module.exports = {
-    'appname': 'expressway app',
+    'appname': 'lark-demo-app',
     'server': require('./server'),
     'static_dir': __dirname + '/' + '../public',
     'favicon_path': __dirname + '/' + '../public/favicon.ico',

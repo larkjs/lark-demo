@@ -1,4 +1,8 @@
+"use strict";
+var path = require('path')
 var conf = require('./config/index.js')
+var larkPath = require.resolve('lark')
+var larkBinPath = path.resolve(path.dirname(larkPath), '../bin/lark')
 
 module.exports = function (grunt) {
     grunt.initConfig({
@@ -8,28 +12,28 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc'
             },
             src: {
-                'src': '**/*.js'
+                'src': '.'
             }
          },
         watch: {
             src: {
                 files: ['**/*.js', 'public/**/*.html', 'public/**/*.css'],
-                tasks: ['build'],
+                tasks: ['build', 'restart'],
                 options: {
                     livereload: true
                 }
             },
-            /*
-            test: {
-                files: '<%= jshint.test.src %>',
-                tasks: ['jshint:test', 'qunit']
-            },
-            */
         },
         open: { // open the url through browser
             "examples": {
                 path: 'http://localhost:' + conf.port + '/'
             }
+        },
+        exec: {
+            'start': larkBinPath + ' start',
+            'restart': larkBinPath + ' restart',
+            'reload': larkBinPath + ' reload',
+            'stop': larkBinPath + ' stop'
         },
         concurrent: {
             build: {
@@ -41,11 +45,14 @@ module.exports = function (grunt) {
             }
         }
     });
-    require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
-    grunt.registerTask('build', ['concurrent:build']);
-    grunt.registerTask('default', ['build']);
+    require('load-grunt-tasks')(grunt, {scope: 'devDependencies'})
+    grunt.registerTask('build', ['concurrent:build'])
+    grunt.registerTask('default', ['build'])
+    grunt.registerTask('start', 'Start the app.', 'exec:start')
+    grunt.registerTask('restart', 'Restart the app.', 'exec:restart')
+    grunt.registerTask('reload', 'Reload the app.', 'exec:reload')
     grunt.registerTask('run', 'Start a developing environment', [
-        'watch'
+        'start', 'watch'
     ]);
 };
 /* vim: set expandtab ts=4 sw=4 sts=4 tw=100: */

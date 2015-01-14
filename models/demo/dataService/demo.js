@@ -1,7 +1,7 @@
 var demoLayer = function(mvc){
     var demo = mvc.dataService.create('demo')   
     demo.getData = function(){
-        articles = {'title': 'demo'}
+        var articles = {'title': 'demo'}
         /*
         co (function *(){
             var articles = yeild this.dao.get(this.request.id);

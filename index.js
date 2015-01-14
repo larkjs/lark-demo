@@ -1,4 +1,6 @@
+"use strict";
 var heapdump = require('heapdump');
+
 
 var app = require('lark')();
  

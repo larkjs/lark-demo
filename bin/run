@@ -1,9 +1,0 @@
-#!/bin/bash
-if [ -f "node" ]; then
-    cd ..
-fi
-if [ -f "bin/node" ]; then
-    ./bin/node --harmony index.js 
-else
-    node --harmony index.js
-fi

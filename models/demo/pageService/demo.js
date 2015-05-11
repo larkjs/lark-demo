@@ -21,6 +21,7 @@ var demoPage = function(mvc){
             console.log(this.render('demo.html', data))
             return this.render('demo.html', data)
         })
+        this.log('demo')
     }
 
     demo.renderArticle = function(articleId){
